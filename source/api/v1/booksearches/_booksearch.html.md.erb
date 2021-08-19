@@ -1,0 +1,147 @@
+# Book Search Endpoint
+
+## Retrieve a list of books for a (well-known) city
+
+```javascript
+var myHeaders = new Headers();
+myHeaders.append("Content-Type", "application/json");
+
+var raw = JSON.stringify({
+  "location": "denver,co",
+  "quantity": "3"
+});
+
+var requestOptions = {
+  method: 'GET',
+  headers: myHeaders,
+  body: raw,
+  redirect: 'follow'
+};
+
+fetch("https://joe-mecha-whether-sweater.herokuapp.com/api/v1/book-search", requestOptions)
+  .then(response => response.text())
+  .then(result => console.log(result))
+  .catch(error => console.log('error', error));
+```
+```ruby
+require "uri"
+require "json"
+require "net/http"
+
+url = URI("https://joe-mecha-whether-sweater.herokuapp.com/api/v1/book-search")
+
+https = Net::HTTP.new(url.host, url.port)
+https.use_ssl = true
+
+request = Net::HTTP::Get.new(url)
+request["Content-Type"] = "application/json"
+request.body = JSON.dump({
+  "location": "denver,co",
+  "quantity": "3"
+})
+
+response = https.request(request)
+puts response.read_body
+```
+```python
+import http.client
+import json
+
+conn = http.client.HTTPSConnection("joe-mecha-whether-sweater.herokuapp.com")
+payload = json.dumps({
+  "location": "denver,co",
+  "quantity": "3"
+})
+headers = {
+  'Content-Type': 'application/json'
+}
+conn.request("GET", "/api/v1/book-search", payload, headers)
+res = conn.getresponse()
+data = res.read()
+print(data.decode("utf-8"))
+```
+<%# ```http
+GET /api/v1/book-search HTTP/1.1
+Host: joe-mecha-whether-sweater.herokuapp.com
+Content-Type: application/json
+Content-Length: 52
+
+{
+    "location": "denver,co",
+    "quantity": "3"
+}
+``` %>
+
+> This is the expected response
+
+```json
+{
+    "data": {
+        "id": null,
+        "type": "books",
+        "attributes": {
+            "destination": "denver,co",
+            "forecast": {
+                "summary": "overcast clouds",
+                "temperature": "83 F"
+            },
+            "total_books_found": 35990,
+            "books": [
+                {
+                    "isbn": [
+                        "9780762507849",
+                        "0762507845"
+                    ],
+                    "title": "Denver, Co",
+                    "publisher": [
+                        "Universal Map Enterprises"
+                    ]
+                }
+                }
+            ]
+        }
+    }
+}
+```
+
+### Description
+Retrieve a list of books for a (well-known) city.
+
+
+### Request Information
+|Category|Value|
+|------|------|
+|Http request| 'GET' |
+|URL|https://joe-mecha-whether-sweater.herokuapp.com/api/v1/booksearch|
+
+### Headers
+No headers required
+
+### Input Schema for Requests
+|Field|Meaning|
+|------|------|
+|location|city,state_abbreviation|
+|quantity*|number of books desired, *optional|
+
+### Output Schema of Request
+|Field|Meaning|
+|------|------|
+|data|container for response data|
+|id|id|
+|type|location in database|
+|attributes|container for data of created user|
+|destination|city,state_abbreviation|
+|forecast|container for current weather data|
+|summary|short description of conditions|
+|temperature|degrees Fahrenheit|
+|total_books_found|total number of books available for city|
+|books|container for data on books|
+|isbn|array of isbn numbers for a book|
+|title|book title|
+|publisher|publisher name|
+
+
+|Code|Message|
+|------|------|
+|200|OK|
+|400|Missing or incorrect location|

@@ -1,0 +1,122 @@
+# Session Endpoint
+
+## Authenticate User
+
+```javascript
+var myHeaders = new Headers();
+myHeaders.append("Content-Type", "application/json");
+
+var raw = JSON.stringify({
+  "email": "something@example.com",
+  "password": "password"
+});
+
+var requestOptions = {
+  method: 'POST',
+  headers: myHeaders,
+  body: raw,
+  redirect: 'follow'
+};
+
+fetch("http://localhost:3000/api/v1/sessions", requestOptions)
+  .then(response => response.text())
+  .then(result => console.log(result))
+  .catch(error => console.log('error', error));
+```
+```ruby
+require "uri"
+require "json"
+require "net/http"
+
+url = URI("http://localhost:3000/api/v1/sessions")
+
+http = Net::HTTP.new(url.host, url.port);
+request = Net::HTTP::Post.new(url)
+request["Content-Type"] = "application/json"
+request.body = JSON.dump({
+  "email": "something@example.com",
+  "password": "password"
+})
+
+response = http.request(request)
+puts response.read_body
+```
+```python
+import http.client
+import json
+
+conn = http.client.HTTPSConnection("joe-mecha-whether-sweater.herokuapp.com")
+payload = json.dumps({
+  "email": "something@example.com",
+  "password": "password"
+})
+headers = {
+  'Content-Type': 'application/json'
+}
+conn.request("POST", "/api/v1/sessions", payload, headers)
+res = conn.getresponse()
+data = res.read()
+print(data.decode("utf-8"))
+```
+<%# ```http
+POST /api/v1/sessions HTTP/1.1
+Host: localhost:3000
+Content-Type: application/json
+Content-Length: 102
+
+{
+  "email": "something@example.com",
+  "password": "password"
+}
+``` %>
+
+> This is the expected response
+
+```json
+{
+    "data": {
+        "id": null,
+        "type": "users",
+        "attributes": {
+            "email": "something@example.com",
+            "api_key": "81c98063d4512d9ed556a491e4e86928"
+        }
+    }
+}
+```
+
+### Description
+To be utilized by the front end. Checks user credentials and responds with API key.
+
+
+### Request Information
+|Category|Value|
+|------|------|
+|Http request| 'POST' |
+|URL|https://joe-mecha-whether-sweater.herokuapp.com/api/v1/sessions|
+
+### Headers
+No headers required
+
+### Input Schema for Requests
+|Field|Meaning|
+|------|------|
+|email|user's valid email address|
+|password|user's registered password|
+
+### Output Schema of Request
+|Field|Meaning|
+|------|------|
+|data|container for response data|
+|id|user id|
+|type|location in database|
+|attributes|container for data of created user|
+|email|user's email address|
+|api_key|api key generated for user|
+
+
+|Code|Message|
+|------|------|
+|200|OK|
+|400|Password incorrect|
+|400|User not found|

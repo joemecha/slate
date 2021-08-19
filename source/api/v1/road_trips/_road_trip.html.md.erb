@@ -1,0 +1,139 @@
+# Road Trip Endpoint
+
+## Create Road Trip
+
+```javascript
+var myHeaders = new Headers();
+myHeaders.append("Content-Type", "application/json");
+
+var raw = JSON.stringify({
+  "origin": "denver,co",
+  "destination": "lake city,co",
+  "api_key": "jgn983hy48thw9begh98h4539h4"
+});
+
+var requestOptions = {
+  method: 'POST',
+  headers: myHeaders,
+  body: raw,
+  redirect: 'follow'
+};
+
+fetch("http.client.HTTPSConnection("joe-mecha-whether-sweater.herokuapp.com")/api/v1/road_trip", requestOptions)
+  .then(response => response.text())
+  .then(result => console.log(result))
+  .catch(error => console.log('error', error));
+```
+```ruby
+require "uri"
+require "json"
+require "net/http"
+
+url = URI("http.client.HTTPSConnection("joe-mecha-whether-sweater.herokuapp.com")/api/v1/road_trip")
+
+http = Net::HTTP.new(url.host, url.port);
+request = Net::HTTP::Post.new(url)
+request["Content-Type"] = "application/json"
+request.body = JSON.dump({
+  "origin": "denver,co",
+  "destination": "lake city,co",
+  "api_key": "jgn983hy48thw9begh98h4539h4"
+})
+
+response = http.request(request)
+puts response.read_body
+
+```
+```python
+import http.client
+import json
+
+conn = http.client.HTTPSConnection("joe-mecha-whether-sweater.herokuapp.com")
+payload = json.dumps({
+  "origin": "denver,co",
+  "destination": "lake city,co",
+  "api_key": "jgn983hy48thw9begh98h4539h4"
+})
+headers = {
+  'Content-Type': 'application/json'
+}
+conn.request("POST", "/api/v1/road_trip", payload, headers)
+res = conn.getresponse()
+data = res.read()
+print(data.decode("utf-8"))
+```
+<%# ```http
+POST /api/v1/road_trip HTTP/1.1
+Host: localhost:3000
+Content-Type: application/json
+Content-Length: 110
+
+{
+    "origin": "denver,co",
+    "destination": "lake city,co",
+    "api_key": "jgn983hy48thw9begh98h4539h4"
+}
+``` %>
+
+> This is the expected response
+
+```json
+{
+    "data": {
+        "id": null,
+        "type": "road_trip",
+        "attributes": {
+            "start_city": "Denver, CO",
+            "end_city": "Lake City, CO",
+            "travel_time": "4 hours and 50 minutes",
+            "weather_at_eta": {
+                "temperature": 61.25,
+                "conditions": "overcast clouds"
+            }
+        }
+    }
+}
+```
+
+### Description
+To be utilized by the front end. Provides travel time and weather forecast for the destination at the ETA.
+
+
+### Request Information
+|Category|Value|
+|------|------|
+|Http request| 'POST' |
+|URL|https://joe-mecha-whether-sweater.herokuapp.com/api/v1/road_trip|
+
+### Headers
+No headers required
+
+### Input Schema for Requests
+|Field|Meaning|
+|------|------|
+|origin|user's starting point; city,state_abbreviation|
+|destination|user's end point; city,state_abbreviation|
+|api_key|user's valid api_key|
+
+
+### Output Schema of Request
+|Field|Meaning|
+|------|------|
+|data|container for response data|
+|id|user id|
+|type|location in database|
+|attributes|container for data of created user|
+|start_city|City, State_abbreviation|
+|end_city|City, State_abbreviation|
+|travel_time|X days X hours and X minutes|
+|weather_at_eta|container for weather data|
+|temperature|given in degrees Fahrenheit|
+|conditions|short description of weather conditions|
+
+
+|Code|Message|
+|------|------|
+|200|OK|
+|400|Missing or incorrect origin and or location|
+|400|Missing or incorrect key|
+|400|Impossible route|

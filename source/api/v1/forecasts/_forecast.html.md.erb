@@ -1,0 +1,170 @@
+# Forecast Endpoint
+
+## Retrieve weather for a city
+
+```javascript
+var myHeaders = new Headers();
+myHeaders.append("Content-Type", "application/json");
+
+var raw = JSON.stringify({
+  "location": "denver,co"
+});
+
+var requestOptions = {
+  method: 'GET',
+  headers: myHeaders,
+  body: raw,
+  redirect: 'follow'
+};
+
+fetch("https://joe-mecha-whether-sweater.herokuapp.com/api/v1/forecast", requestOptions)
+  .then(response => response.text())
+  .then(result => console.log(result))
+  .catch(error => console.log('error', error));
+```
+```ruby
+require "uri"
+require "json"
+require "net/http"
+
+url = URI("https://joe-mecha-whether-sweater.herokuapp.com/api/v1/forecast")
+
+http = Net::HTTP.new(url.host, url.port);
+request = Net::HTTP::Get.new(url)
+request["Content-Type"] = "application/json"
+request.body = JSON.dump({
+  "location": "denver,co"
+})
+
+response = http.request(request)
+puts response.read_body
+```
+```python
+import http.client
+import json
+
+conn = http.client.HTTPSConnection("joe-mecha-whether-sweater.herokuapp.com")
+payload = json.dumps({
+  "location": "denver,co"
+})
+headers = {
+  'Content-Type': 'application/json'
+}
+conn.request("GET", "/api/v1/forecast", payload, headers)
+res = conn.getresponse()
+data = res.read()
+print(data.decode("utf-8"))
+```
+<%# ```http
+GET /api/v1/forecast HTTP/1.1
+Host: joe-mecha-whether-sweater.herokuapp.com
+Content-Type: application/json
+Content-Length: 29
+
+{
+  "location": "denver,co"
+}
+```%>
+
+> This is the expected response
+
+```json
+{
+    "data": {
+        "id": null,
+        "type": "forecast",
+        "attributes": {
+            "current_weather": {
+                "datetime": "2021-08-19 01:32:11 +0000",
+                "sunrise": "2021-08-18 12:15:18 +0000",
+                "sunset": "2021-08-19 01:52:26 +0000",
+                "temperature": 84.38,
+                "feels_like": 81.95,
+                "humidity": 26,
+                "uvi": 0,
+                "visibility": 10000,
+                "conditions": "overcast clouds",
+                "icon": "04d"
+            },
+            "daily_weather": [
+                {
+                    "date": "2021-08-18 19:00:00 +0000",
+                    "sunrise": "2021-08-18 12:15:18 +0000",
+                    "sunset": "2021-08-19 01:52:26 +0000",
+                    "max_temp": 94.93,
+                    "min_temp": 69.76,
+                    "conditions": "light rain",
+                    "icon": "10d"
+                }
+            ],
+            "hourly_weather": [
+                {
+                    "time": "01:00:00",
+                    "temperature": 85.53,
+                    "conditions": "overcast clouds",
+                    "icon": "04d"
+                }
+            ]
+        }
+    }
+}
+```
+
+### Description
+Retrieve specified weather data for a logged in user.
+
+
+### Request Information
+|Category|Value|
+|------|------|
+|Http request| 'GET' |
+|URL|https://joe-mecha-whether-sweater.herokuapp.com/api/v1/forecast|
+
+### Headers
+No headers required
+
+### Input Schema for Requests
+|Field|Meaning|
+|------|------|
+|location|city,state_abbreviation|
+
+
+### Output Schema of Request
+|Field|Meaning|
+|------|------|
+|data|container for response data|
+|id|id|
+|type|location in database|
+|attributes|container for data of created user|
+|current_weather|container for current weather data|
+|datetime|YYYY-MM-DD HH:MM:SS|
+|sunrise|YYYY-MM-DD HH:MM:SS|
+|sunset|YYYY-MM-DD HH:MM:SS|
+|temperature|current temperature in degrees Fahrenheit|
+|feels_like|feels like temperature in degrees Fahrenheit|
+|humidity|percent as two-digit number|
+|uvi|ultraviolet index|
+|visibility|given in feet|
+|conditions|Short description of conditions|
+|icon|weather icon|
+|------|------|
+|daily_weather|container for daily weather data|
+|date|YYYY-MM-DD HH:MM:SS|
+|sunrise|YYYY-MM-DD HH:MM:SS|
+|sunset|YYYY-MM-DD HH:MM:SS|
+|max_temp|maximum daily temperature in degrees Fahrenheit|
+|min_temp|minimum daily temperature in degrees Fahrenheit|
+|conditions|Short description of conditions|
+|icon|weather icon|
+|------|------|
+|hourly_weather|container for hourly weather data|
+|time|HH:MM:SS|
+|temperature|in degrees Fahrenheit|
+|conditions|short description of conditions|
+|icon|weather icon|
+
+
+|Code|Message|
+|------|------|
+|200|OK|
+|400|Missing or incorrect location|

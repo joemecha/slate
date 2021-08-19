@@ -1,0 +1,128 @@
+# Backgrounds Endpoint
+
+## Retrieve a background image for a city
+
+```javascript
+var myHeaders = new Headers();
+myHeaders.append("Content-Type", "application/json");
+
+var raw = JSON.stringify({
+  "location": "denver,co"
+});
+
+var requestOptions = {
+  method: 'GET',
+  headers: myHeaders,
+  body: raw,
+  redirect: 'follow'
+};
+
+fetch("https://joe-mecha-whether-sweater.herokuapp.com/api/v1/backgrounds", requestOptions)
+  .then(response => response.text())
+  .then(result => console.log(result))
+  .catch(error => console.log('error', error));
+```
+```ruby
+require "uri"
+require "json"
+require "net/http"
+
+url = URI("https://joe-mecha-whether-sweater.herokuapp.com/api/v1/backgrounds")
+
+https = Net::HTTP.new(url.host, url.port)
+https.use_ssl = true
+
+request = Net::HTTP::Get.new(url)
+request["Content-Type"] = "application/json"
+request.body = JSON.dump({
+  "location": "denver,co"
+})
+
+response = https.request(request)
+puts response.read_body
+```
+```python
+import http.client
+import json
+
+conn = http.client.HTTPSConnection("joe-mecha-whether-sweater.herokuapp.com")
+payload = json.dumps({
+  "location": "denver,co"
+})
+headers = {
+  'Content-Type': 'application/json'
+}
+conn.request("GET", "/api/v1/backgrounds", payload, headers)
+res = conn.getresponse()
+data = res.read()
+print(data.decode("utf-8"))
+```
+<%# ```http
+GET /api/v1/backgrounds HTTP/1.1
+Host: joe-mecha-whether-sweater.herokuapp.com
+Content-Type: application/json
+Content-Length: 31
+
+{
+    "location": "denver,co"
+}
+``` %>
+
+> This is the expected response
+
+```json
+{
+    "data": {
+        "id": null,
+        "type": "image",
+        "attributes": {
+            "image": {
+                "image_url": "https://images.example.com/photo-16...",
+                "description": "Twilight in Downtown Denver",
+                "credits": {
+                    "author": "Josh",
+                    "source": "https://example.com/@joshperson"
+                }
+            }
+        }
+    }
+}
+```
+
+### Description
+Retrieve a background image for the provided city.
+
+
+### Request Information
+|Category|Value|
+|------|------|
+|Http request| 'GET' |
+|URL|https://joe-mecha-whether-sweater.herokuapp.com/api/v1/backgrounds|
+
+### Headers
+No headers required
+
+### Input Schema for Requests
+|Field|Meaning|
+|------|------|
+|location|city,state_abbreviation|
+
+
+### Output Schema of Request
+|Field|Meaning|
+|------|------|
+|data|container for response data|
+|id|id|
+|type|location in database|
+|attributes|container for data of created user|
+|image|container for image data|
+|image_url|web address of image|
+|description|Short description of image|
+|credits|container for image credit data|
+|author|photographer's name|
+|source|photographer's web address|
+
+|Code|Message|
+|------|------|
+|200|OK|
+|400|Missing or incorrect location|
