@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <title>API Reference</title>
+    <title>Whether, Sweater API Docs</title>
 
     <style media="screen">
       .highlight table td { padding: 5px; }
@@ -291,7 +291,7 @@
     </script>
   </head>
 
-  <body class="index" data-languages="[&quot;shell&quot;,&quot;ruby&quot;,&quot;python&quot;,&quot;javascript&quot;]">
+  <body class="index" data-languages="[&quot;javascript&quot;,&quot;ruby&quot;,&quot;python&quot;]">
     <a href="#" id="nav-button">
       <span>
         NAV
@@ -301,10 +301,9 @@
     <div class="toc-wrapper">
       <img src="images/logo.png" class="logo" alt="" />
         <div class="lang-selector">
-              <a href="#" data-language-name="shell">shell</a>
+              <a href="#" data-language-name="javascript">javascript</a>
               <a href="#" data-language-name="ruby">ruby</a>
               <a href="#" data-language-name="python">python</a>
-              <a href="#" data-language-name="javascript">javascript</a>
         </div>
         <div class="search">
           <input type="text" class="search" id="input-search" placeholder="Search">
@@ -312,282 +311,1203 @@
         <ul class="search-results"></ul>
       <ul id="toc" class="toc-list-h1">
           <li>
-            <a href="#introduction" class="toc-h1 toc-link" data-title="Introduction">Introduction</a>
+            <a href="#whether-sweater-api-docs" class="toc-h1 toc-link" data-title="Whether, Sweater API Docs">Whether, Sweater API Docs</a>
           </li>
           <li>
-            <a href="#authentication" class="toc-h1 toc-link" data-title="Authentication">Authentication</a>
-          </li>
-          <li>
-            <a href="#kittens" class="toc-h1 toc-link" data-title="Kittens">Kittens</a>
+            <a href="#user-endpoint" class="toc-h1 toc-link" data-title="User Endpoint">User Endpoint</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#get-all-kittens" class="toc-h2 toc-link" data-title="Get All Kittens">Get All Kittens</a>
-                  </li>
-                  <li>
-                    <a href="#get-a-specific-kitten" class="toc-h2 toc-link" data-title="Get a Specific Kitten">Get a Specific Kitten</a>
-                  </li>
-                  <li>
-                    <a href="#delete-a-specific-kitten" class="toc-h2 toc-link" data-title="Delete a Specific Kitten">Delete a Specific Kitten</a>
+                    <a href="#register-new-user" class="toc-h2 toc-link" data-title="Register New User">Register New User</a>
                   </li>
               </ul>
           </li>
           <li>
-            <a href="#errors" class="toc-h1 toc-link" data-title="Errors">Errors</a>
+            <a href="#session-endpoint" class="toc-h1 toc-link" data-title="Session Endpoint">Session Endpoint</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#authenticate-user" class="toc-h2 toc-link" data-title="Authenticate User">Authenticate User</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#forecast-endpoint" class="toc-h1 toc-link" data-title="Forecast Endpoint">Forecast Endpoint</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#retrieve-weather-for-a-city" class="toc-h2 toc-link" data-title="Retrieve weather for a city">Retrieve weather for a city</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#backgrounds-endpoint" class="toc-h1 toc-link" data-title="Backgrounds Endpoint">Backgrounds Endpoint</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#retrieve-a-background-image-for-a-city" class="toc-h2 toc-link" data-title="Retrieve a background image for a city">Retrieve a background image for a city</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#road-trip-endpoint" class="toc-h1 toc-link" data-title="Road Trip Endpoint">Road Trip Endpoint</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#create-road-trip" class="toc-h2 toc-link" data-title="Create Road Trip">Create Road Trip</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#book-search-endpoint" class="toc-h1 toc-link" data-title="Book Search Endpoint">Book Search Endpoint</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#retrieve-a-list-of-books-for-a-well-known-city" class="toc-h2 toc-link" data-title="Retrieve a list of books for a (well-known) city">Retrieve a list of books for a (well-known) city</a>
+                  </li>
+              </ul>
           </li>
       </ul>
-        <ul class="toc-footer">
-            <li><a href='#'>Sign Up for a Developer Key</a></li>
-            <li><a href='https://github.com/slatedocs/slate'>Documentation Powered by Slate</a></li>
-        </ul>
     </div>
     <div class="page-wrapper">
       <div class="dark-box"></div>
       <div class="content">
-        <h1 id='introduction'>Introduction</h1>
-<p>Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.</p>
+        <h1 id='whether-sweater-api-docs'>Whether, Sweater API Docs</h1>
 
-<p>We have language bindings in Shell, Ruby, Python, and JavaScript! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.</p>
+<p><h1 id='user-endpoint'>User Endpoint</h1><h2 id='register-new-user'>Register New User</h2><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="kd">var</span> <span class="nx">myHeaders</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Headers</span><span class="p">();</span>
+<span class="nx">myHeaders</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="dl">&quot;</span><span class="s2">Content-Type</span><span class="dl">&quot;</span><span class="p">,</span> <span class="dl">&quot;</span><span class="s2">application/json</span><span class="dl">&quot;</span><span class="p">);</span></p>
 
-<p>This example API documentation page was created with <a href="https://github.com/slatedocs/slate">Slate</a>. Feel free to edit it and use it as a base for your own API&#39;s documentation.</p>
-<h1 id='authentication'>Authentication</h1>
-<blockquote>
-<p>To authorize, use this code:</p>
-</blockquote>
-<div class="highlight"><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
+<p><span class="kd">var</span> <span class="nx">raw</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">({</span>
+  <span class="dl">&quot;</span><span class="s2">email</span><span class="dl">&quot;</span><span class="p">:</span> <span class="dl">&quot;</span><span class="s2">something@example.com</span><span class="dl">&quot;</span><span class="p">,</span>
+  <span class="dl">&quot;</span><span class="s2">password</span><span class="dl">&quot;</span><span class="p">:</span> <span class="dl">&quot;</span><span class="s2">password</span><span class="dl">&quot;</span><span class="p">,</span>
+  <span class="dl">&quot;</span><span class="s2">password_confirmation</span><span class="dl">&quot;</span><span class="p">:</span> <span class="dl">&quot;</span><span class="s2">password</span><span class="dl">&quot;</span>
+<span class="p">});</span></p>
 
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
-</code></pre></div><div class="highlight"><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">kittn</span>
+<p><span class="kd">var</span> <span class="nx">requestOptions</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">method</span><span class="p">:</span> <span class="dl">&#39;</span><span class="s1">POST</span><span class="dl">&#39;</span><span class="p">,</span>
+  <span class="na">headers</span><span class="p">:</span> <span class="nx">myHeaders</span><span class="p">,</span>
+  <span class="na">body</span><span class="p">:</span> <span class="nx">raw</span><span class="p">,</span>
+  <span class="na">redirect</span><span class="p">:</span> <span class="dl">&#39;</span><span class="s1">follow</span><span class="dl">&#39;</span>
+<span class="p">};</span></p>
 
-<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="p">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
-</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code><span class="c"># With shell, you can just pass the correct header with each request</span>
-curl <span class="s2">"api_endpoint_here"</span> <span class="se">\</span>
-  <span class="nt">-H</span> <span class="s2">"Authorization: meowmeowmeow"</span>
-</code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="kd">const</span> <span class="nx">kittn</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">kittn</span><span class="dl">'</span><span class="p">);</span>
+<p><span class="nx">fetch</span><span class="p">(</span><span class="dl">&quot;</span><span class="s2">https://joe-mecha-whether-sweater.herokuapp.com/api/v1/users</span><span class="dl">&quot;</span><span class="p">,</span> <span class="nx">requestOptions</span><span class="p">)</span>
+  <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">response</span> <span class="o">=&gt;</span> <span class="nx">response</span><span class="p">.</span><span class="nx">text</span><span class="p">())</span>
+  <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">result</span> <span class="o">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">result</span><span class="p">))</span>
+  <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="nx">error</span> <span class="o">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">&#39;</span><span class="s1">error</span><span class="dl">&#39;</span><span class="p">,</span> <span class="nx">error</span><span class="p">));</span>
+</code></pre></div><div class="highlight"><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s2">&quot;uri&quot;</span>
+<span class="nb">require</span> <span class="s2">&quot;json&quot;</span>
+<span class="nb">require</span> <span class="s2">&quot;net/http&quot;</span></p>
 
-<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">kittn</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="dl">'</span><span class="s1">meowmeowmeow</span><span class="dl">'</span><span class="p">);</span>
+<p><span class="n">url</span> <span class="o">=</span> <span class="no">URI</span><span class="p">(</span><span class="s2">&quot;https://joe-mecha-whether-sweater.herokuapp.com/api/v1/users&quot;</span><span class="p">)</span></p>
+
+<p><span class="n">http</span> <span class="o">=</span> <span class="no">Net</span><span class="o">::</span><span class="no">HTTP</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="n">url</span><span class="p">.</span><span class="nf">host</span><span class="p">,</span> <span class="n">url</span><span class="p">.</span><span class="nf">port</span><span class="p">);</span>
+<span class="n">request</span> <span class="o">=</span> <span class="no">Net</span><span class="o">::</span><span class="no">HTTP</span><span class="o">::</span><span class="no">Post</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+<span class="n">request</span><span class="p">[</span><span class="s2">&quot;Content-Type&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;application/json&quot;</span>
+<span class="n">request</span><span class="p">.</span><span class="nf">body</span> <span class="o">=</span> <span class="no">JSON</span><span class="p">.</span><span class="nf">dump</span><span class="p">({</span>
+  <span class="s2">&quot;email&quot;</span><span class="p">:</span> <span class="s2">&quot;something@example.com&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;password&quot;</span><span class="p">:</span> <span class="s2">&quot;password&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;password_confirmation&quot;</span><span class="p">:</span> <span class="s2">&quot;password&quot;</span>
+<span class="p">})</span></p>
+
+<p><span class="n">response</span> <span class="o">=</span> <span class="n">http</span><span class="p">.</span><span class="nf">request</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
+<span class="nb">puts</span> <span class="n">response</span><span class="p">.</span><span class="nf">read_body</span>
+</code></pre></div><div class="highlight"><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">http.client</span>
+<span class="kn">import</span> <span class="nn">json</span></p>
+
+<p><span class="n">conn</span> <span class="o">=</span> <span class="n">http</span><span class="p">.</span><span class="n">client</span><span class="p">.</span><span class="n">HTTPSConnection</span><span class="p">(</span><span class="s">&quot;joe-mecha-whether-sweater.herokuapp.com&quot;</span><span class="p">)</span>
+<span class="n">payload</span> <span class="o">=</span> <span class="n">json</span><span class="p">.</span><span class="n">dumps</span><span class="p">({</span>
+  <span class="s">&quot;email&quot;</span><span class="p">:</span> <span class="s">&quot;something@example.com&quot;</span><span class="p">,</span>
+  <span class="s">&quot;password&quot;</span><span class="p">:</span> <span class="s">&quot;password&quot;</span><span class="p">,</span>
+  <span class="s">&quot;password_confirmation&quot;</span><span class="p">:</span> <span class="s">&quot;password&quot;</span>
+<span class="p">})</span>
+<span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="s">&#39;Content-Type&#39;</span><span class="p">:</span> <span class="s">&#39;application/json&#39;</span>
+<span class="p">}</span>
+<span class="n">conn</span><span class="p">.</span><span class="n">request</span><span class="p">(</span><span class="s">&quot;POST&quot;</span><span class="p">,</span> <span class="s">&quot;/api/v1/users&quot;</span><span class="p">,</span> <span class="n">payload</span><span class="p">,</span> <span class="n">headers</span><span class="p">)</span>
+<span class="n">res</span> <span class="o">=</span> <span class="n">conn</span><span class="p">.</span><span class="n">getresponse</span><span class="p">()</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">res</span><span class="p">.</span><span class="n">read</span><span class="p">()</span>
+<span class="k">print</span><span class="p">(</span><span class="n">data</span><span class="p">.</span><span class="n">decode</span><span class="p">(</span><span class="s">&quot;utf-8&quot;</span><span class="p">))</span>
 </code></pre></div>
 <blockquote>
-<p>Make sure to replace <code>meowmeowmeow</code> with your API key.</p>
-</blockquote>
+<p>This is the expected response</p>
 
-<p>Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our <a href="http://example.com/developers">developer portal</a>.</p>
-
-<p>Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:</p>
-
-<p><code>Authorization: meowmeowmeow</code></p>
-
-<aside class="notice">
-You must replace <code>meowmeowmeow</code> with your personal API key.
-</aside>
-<h1 id='kittens'>Kittens</h1><h2 id='get-all-kittens'>Get All Kittens</h2><div class="highlight"><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="p">.</span><span class="nf">kittens</span><span class="p">.</span><span class="nf">get</span>
-</code></pre></div><div class="highlight"><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">kittn</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="p">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="p">.</span><span class="n">kittens</span><span class="p">.</span><span class="n">get</span><span class="p">()</span>
-</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://example.com/api/kittens"</span> <span class="se">\</span>
-  <span class="nt">-H</span> <span class="s2">"Authorization: meowmeowmeow"</span>
-</code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="kd">const</span> <span class="nx">kittn</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">kittn</span><span class="dl">'</span><span class="p">);</span>
-
-<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">kittn</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="dl">'</span><span class="s1">meowmeowmeow</span><span class="dl">'</span><span class="p">);</span>
-<span class="kd">let</span> <span class="nx">kittens</span> <span class="o">=</span> <span class="nx">api</span><span class="p">.</span><span class="nx">kittens</span><span class="p">.</span><span class="kd">get</span><span class="p">();</span>
-</code></pre></div>
-<blockquote>
-<p>The above command returns JSON structured like this:</p>
-</blockquote>
-<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
-  </span><span class="p">{</span><span class="w">
-    </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Fluffums"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"calico"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"fluffiness"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"cuteness"</span><span class="p">:</span><span class="w"> </span><span class="mi">7</span><span class="w">
-  </span><span class="p">},</span><span class="w">
-  </span><span class="p">{</span><span class="w">
-    </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Max"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"unknown"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"fluffiness"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"cuteness"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="w">
-  </span><span class="p">}</span><span class="w">
-</span><span class="p">]</span><span class="w">
-</span></code></pre></div>
-<p>This endpoint retrieves all kittens.</p>
-<h3 id='http-request'>HTTP Request</h3>
-<p><code>GET http://example.com/api/kittens</code></p>
-<h3 id='query-parameters'>Query Parameters</h3>
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Default</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>include_cats</td>
-<td>false</td>
-<td>If set to true, the result will also include cats.</td>
-</tr>
-<tr>
-<td>available</td>
-<td>true</td>
-<td>If set to false, the result will include kittens that have already been adopted.</td>
-</tr>
-</tbody></table>
-
-<aside class="success">
-Remember — a happy kitten is an authenticated kitten!
-</aside>
-<h2 id='get-a-specific-kitten'>Get a Specific Kitten</h2><div class="highlight"><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="p">.</span><span class="nf">kittens</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-</code></pre></div><div class="highlight"><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">kittn</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="p">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="p">.</span><span class="n">kittens</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://example.com/api/kittens/2"</span> <span class="se">\</span>
-  <span class="nt">-H</span> <span class="s2">"Authorization: meowmeowmeow"</span>
-</code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="kd">const</span> <span class="nx">kittn</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">kittn</span><span class="dl">'</span><span class="p">);</span>
-
-<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">kittn</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="dl">'</span><span class="s1">meowmeowmeow</span><span class="dl">'</span><span class="p">);</span>
-<span class="kd">let</span> <span class="nx">max</span> <span class="o">=</span> <span class="nx">api</span><span class="p">.</span><span class="nx">kittens</span><span class="p">.</span><span class="kd">get</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
-</code></pre></div>
-<blockquote>
-<p>The above command returns JSON structured like this:</p>
-</blockquote>
+<p></blockquote>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Max"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"unknown"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"fluffiness"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"cuteness"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="w">
+    </span><span class="nl">&quot;data&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;1&quot;</span><span class="p">,</span><span class="w">
+        </span><span class="nl">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;users&quot;</span><span class="p">,</span><span class="w">
+        </span><span class="nl">&quot;attributes&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nl">&quot;email&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;something@example.com&quot;</span><span class="p">,</span><span class="w">
+            </span><span class="nl">&quot;api_key&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;5583776ba1151cd09ca2ca95a272f14c&quot;</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div>
-<p>This endpoint retrieves a specific kitten.</p>
-
-<aside class="warning">Inside HTML code blocks like this one, you can't use Markdown, so use <code>&lt;code&gt;</code> blocks to denote code.</aside>
-<h3 id='http-request-2'>HTTP Request</h3>
-<p><code>GET http://example.com/kittens/&lt;ID&gt;</code></p>
-<h3 id='url-parameters'>URL Parameters</h3>
+</span></code></pre></div><h3 id='description'>Description</h3>
+<p>To be utilized by the front end. Successful request adds a new user to the database. Encrypts password and replies with unique api key.</p>
+<h3 id='request-information'>Request Information</h3>
 <table><thead>
 <tr>
-<th>Parameter</th>
-<th>Description</th>
+<th>Category</th>
+<th>Value</th>
 </tr>
 </thead><tbody>
 <tr>
-<td>ID</td>
-<td>The ID of the kitten to retrieve</td>
+<td>HTTP request</td>
+<td>&#39;POST&#39;</td>
+</tr>
+<tr>
+<td>URL</td>
+<td>https://joe-mecha-whether-sweater.herokuapp.com/api/v1/users</td>
 </tr>
 </tbody></table>
-<h2 id='delete-a-specific-kitten'>Delete a Specific Kitten</h2><div class="highlight"><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="p">.</span><span class="nf">kittens</span><span class="p">.</span><span class="nf">delete</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-</code></pre></div><div class="highlight"><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">kittn</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="p">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="p">.</span><span class="n">kittens</span><span class="p">.</span><span class="n">delete</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://example.com/api/kittens/2"</span> <span class="se">\</span>
-  <span class="nt">-X</span> DELETE <span class="se">\</span>
-  <span class="nt">-H</span> <span class="s2">"Authorization: meowmeowmeow"</span>
-</code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="kd">const</span> <span class="nx">kittn</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">kittn</span><span class="dl">'</span><span class="p">);</span>
-
-<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">kittn</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="dl">'</span><span class="s1">meowmeowmeow</span><span class="dl">'</span><span class="p">);</span>
-<span class="kd">let</span> <span class="nx">max</span> <span class="o">=</span> <span class="nx">api</span><span class="p">.</span><span class="nx">kittens</span><span class="p">.</span><span class="k">delete</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
-</code></pre></div>
-<blockquote>
-<p>The above command returns JSON structured like this:</p>
-</blockquote>
-<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"deleted"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">":("</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre></div>
-<p>This endpoint deletes a specific kitten.</p>
-<h3 id='http-request-3'>HTTP Request</h3>
-<p><code>DELETE http://example.com/kittens/&lt;ID&gt;</code></p>
-<h3 id='url-parameters-2'>URL Parameters</h3>
+<h3 id='headers'>Headers</h3>
+<p>No headers required</p>
+<h3 id='input-schema-for-requests'>Input Schema for Requests</h3>
 <table><thead>
 <tr>
-<th>Parameter</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>ID</td>
-<td>The ID of the kitten to delete</td>
-</tr>
-</tbody></table>
-<h1 id='errors'>Errors</h1>
-<aside class="notice">
-This error section is stored in a separate file in <code>includes/_errors.md</code>. Slate allows you to optionally separate out your docs into many files...just save them to the <code>includes</code> folder and add them to the top of your <code>index.md</code>'s frontmatter. Files are included in the order listed.
-</aside>
-
-<p>The Kittn API uses the following error codes:</p>
-
-<table><thead>
-<tr>
-<th>Error Code</th>
+<th>Field</th>
 <th>Meaning</th>
 </tr>
 </thead><tbody>
 <tr>
+<td>email</td>
+<td>user&#39;s valid email address</td>
+</tr>
+<tr>
+<td>password</td>
+<td>password chosen by user</td>
+</tr>
+<tr>
+<td>password_confirmation</td>
+<td>must be entered exactly the same as password</td>
+</tr>
+</tbody></table>
+<h3 id='output-schema-of-request'>Output Schema of Request</h3>
+<table><thead>
+<tr>
+<th>Field</th>
+<th>Meaning</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>data</td>
+<td>container for response data</td>
+</tr>
+<tr>
+<td>id</td>
+<td>user id</td>
+</tr>
+<tr>
+<td>type</td>
+<td>location in database</td>
+</tr>
+<tr>
+<td>attributes</td>
+<td>container for data of created user</td>
+</tr>
+<tr>
+<td>email</td>
+<td>user&#39;s email address</td>
+</tr>
+<tr>
+<td>api_key</td>
+<td>api key generated for user</td>
+</tr>
+</tbody></table>
+<h3 id='status-codes'>Status Codes</h3>
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Message</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>201</td>
+<td>New user created</td>
+</tr>
+<tr>
 <td>400</td>
-<td>Bad Request -- Your request is invalid.</td>
+<td>Email cannot be blank</td>
 </tr>
 <tr>
-<td>401</td>
-<td>Unauthorized -- Your API key is wrong.</td>
+<td>400</td>
+<td>Passwords do not match</td>
+</tr>
+</tbody></table></p></p>
+
+<p><h1 id='session-endpoint'>Session Endpoint</h1><h2 id='authenticate-user'>Authenticate User</h2><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="kd">var</span> <span class="nx">myHeaders</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Headers</span><span class="p">();</span>
+<span class="nx">myHeaders</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="dl">&quot;</span><span class="s2">Content-Type</span><span class="dl">&quot;</span><span class="p">,</span> <span class="dl">&quot;</span><span class="s2">application/json</span><span class="dl">&quot;</span><span class="p">);</span></p>
+
+<p><span class="kd">var</span> <span class="nx">raw</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">({</span>
+  <span class="dl">&quot;</span><span class="s2">email</span><span class="dl">&quot;</span><span class="p">:</span> <span class="dl">&quot;</span><span class="s2">something@example.com</span><span class="dl">&quot;</span><span class="p">,</span>
+  <span class="dl">&quot;</span><span class="s2">password</span><span class="dl">&quot;</span><span class="p">:</span> <span class="dl">&quot;</span><span class="s2">password</span><span class="dl">&quot;</span>
+<span class="p">});</span></p>
+
+<p><span class="kd">var</span> <span class="nx">requestOptions</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">method</span><span class="p">:</span> <span class="dl">&#39;</span><span class="s1">POST</span><span class="dl">&#39;</span><span class="p">,</span>
+  <span class="na">headers</span><span class="p">:</span> <span class="nx">myHeaders</span><span class="p">,</span>
+  <span class="na">body</span><span class="p">:</span> <span class="nx">raw</span><span class="p">,</span>
+  <span class="na">redirect</span><span class="p">:</span> <span class="dl">&#39;</span><span class="s1">follow</span><span class="dl">&#39;</span>
+<span class="p">};</span></p>
+
+<p><span class="nx">fetch</span><span class="p">(</span><span class="dl">&quot;</span><span class="s2">http://localhost:3000/api/v1/sessions</span><span class="dl">&quot;</span><span class="p">,</span> <span class="nx">requestOptions</span><span class="p">)</span>
+  <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">response</span> <span class="o">=&gt;</span> <span class="nx">response</span><span class="p">.</span><span class="nx">text</span><span class="p">())</span>
+  <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">result</span> <span class="o">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">result</span><span class="p">))</span>
+  <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="nx">error</span> <span class="o">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">&#39;</span><span class="s1">error</span><span class="dl">&#39;</span><span class="p">,</span> <span class="nx">error</span><span class="p">));</span>
+</code></pre></div><div class="highlight"><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s2">&quot;uri&quot;</span>
+<span class="nb">require</span> <span class="s2">&quot;json&quot;</span>
+<span class="nb">require</span> <span class="s2">&quot;net/http&quot;</span></p>
+
+<p><span class="n">url</span> <span class="o">=</span> <span class="no">URI</span><span class="p">(</span><span class="s2">&quot;http://localhost:3000/api/v1/sessions&quot;</span><span class="p">)</span></p>
+
+<p><span class="n">http</span> <span class="o">=</span> <span class="no">Net</span><span class="o">::</span><span class="no">HTTP</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="n">url</span><span class="p">.</span><span class="nf">host</span><span class="p">,</span> <span class="n">url</span><span class="p">.</span><span class="nf">port</span><span class="p">);</span>
+<span class="n">request</span> <span class="o">=</span> <span class="no">Net</span><span class="o">::</span><span class="no">HTTP</span><span class="o">::</span><span class="no">Post</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+<span class="n">request</span><span class="p">[</span><span class="s2">&quot;Content-Type&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;application/json&quot;</span>
+<span class="n">request</span><span class="p">.</span><span class="nf">body</span> <span class="o">=</span> <span class="no">JSON</span><span class="p">.</span><span class="nf">dump</span><span class="p">({</span>
+  <span class="s2">&quot;email&quot;</span><span class="p">:</span> <span class="s2">&quot;something@example.com&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;password&quot;</span><span class="p">:</span> <span class="s2">&quot;password&quot;</span>
+<span class="p">})</span></p>
+
+<p><span class="n">response</span> <span class="o">=</span> <span class="n">http</span><span class="p">.</span><span class="nf">request</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
+<span class="nb">puts</span> <span class="n">response</span><span class="p">.</span><span class="nf">read_body</span>
+</code></pre></div><div class="highlight"><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">http.client</span>
+<span class="kn">import</span> <span class="nn">json</span></p>
+
+<p><span class="n">conn</span> <span class="o">=</span> <span class="n">http</span><span class="p">.</span><span class="n">client</span><span class="p">.</span><span class="n">HTTPSConnection</span><span class="p">(</span><span class="s">&quot;joe-mecha-whether-sweater.herokuapp.com&quot;</span><span class="p">)</span>
+<span class="n">payload</span> <span class="o">=</span> <span class="n">json</span><span class="p">.</span><span class="n">dumps</span><span class="p">({</span>
+  <span class="s">&quot;email&quot;</span><span class="p">:</span> <span class="s">&quot;something@example.com&quot;</span><span class="p">,</span>
+  <span class="s">&quot;password&quot;</span><span class="p">:</span> <span class="s">&quot;password&quot;</span>
+<span class="p">})</span>
+<span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="s">&#39;Content-Type&#39;</span><span class="p">:</span> <span class="s">&#39;application/json&#39;</span>
+<span class="p">}</span>
+<span class="n">conn</span><span class="p">.</span><span class="n">request</span><span class="p">(</span><span class="s">&quot;POST&quot;</span><span class="p">,</span> <span class="s">&quot;/api/v1/sessions&quot;</span><span class="p">,</span> <span class="n">payload</span><span class="p">,</span> <span class="n">headers</span><span class="p">)</span>
+<span class="n">res</span> <span class="o">=</span> <span class="n">conn</span><span class="p">.</span><span class="n">getresponse</span><span class="p">()</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">res</span><span class="p">.</span><span class="n">read</span><span class="p">()</span>
+<span class="k">print</span><span class="p">(</span><span class="n">data</span><span class="p">.</span><span class="n">decode</span><span class="p">(</span><span class="s">&quot;utf-8&quot;</span><span class="p">))</span>
+</code></pre></div>
+<blockquote>
+<p>This is the expected response</p>
+
+<p></blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="nl">&quot;data&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="nl">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;users&quot;</span><span class="p">,</span><span class="w">
+        </span><span class="nl">&quot;attributes&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nl">&quot;email&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;something@example.com&quot;</span><span class="p">,</span><span class="w">
+            </span><span class="nl">&quot;api_key&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;81c98063d4512d9ed556a491e4e86928&quot;</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><h3 id='description'>Description</h3>
+<p>To be utilized by the front end. Checks user credentials and responds with API key.</p>
+<h3 id='request-information'>Request Information</h3>
+<table><thead>
+<tr>
+<th>Category</th>
+<th>Value</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Http request</td>
+<td>&#39;POST&#39;</td>
 </tr>
 <tr>
-<td>403</td>
-<td>Forbidden -- The kitten requested is hidden for administrators only.</td>
+<td>URL</td>
+<td>https://joe-mecha-whether-sweater.herokuapp.com/api/v1/sessions</td>
+</tr>
+</tbody></table>
+<h3 id='headers'>Headers</h3>
+<p>No headers required</p>
+<h3 id='input-schema-for-requests'>Input Schema for Requests</h3>
+<table><thead>
+<tr>
+<th>Field</th>
+<th>Meaning</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>email</td>
+<td>user&#39;s valid email address</td>
 </tr>
 <tr>
-<td>404</td>
-<td>Not Found -- The specified kitten could not be found.</td>
+<td>password</td>
+<td>user&#39;s registered password</td>
+</tr>
+</tbody></table>
+<h3 id='output-schema-of-request'>Output Schema of Request</h3>
+<table><thead>
+<tr>
+<th>Field</th>
+<th>Meaning</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>data</td>
+<td>container for response data</td>
 </tr>
 <tr>
-<td>405</td>
-<td>Method Not Allowed -- You tried to access a kitten with an invalid method.</td>
+<td>id</td>
+<td>user id</td>
 </tr>
 <tr>
-<td>406</td>
-<td>Not Acceptable -- You requested a format that isn&#39;t json.</td>
+<td>type</td>
+<td>location in database</td>
 </tr>
 <tr>
-<td>410</td>
-<td>Gone -- The kitten requested has been removed from our servers.</td>
+<td>attributes</td>
+<td>container for data of created user</td>
 </tr>
 <tr>
-<td>418</td>
-<td>I&#39;m a teapot.</td>
+<td>email</td>
+<td>user&#39;s email address</td>
 </tr>
 <tr>
-<td>429</td>
-<td>Too Many Requests -- You&#39;re requesting too many kittens! Slow down!</td>
+<td>api_key</td>
+<td>api key generated for user</td>
+</tr>
+</tbody></table></p></p>
+
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Message</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>200</td>
+<td>OK</td>
 </tr>
 <tr>
-<td>500</td>
-<td>Internal Server Error -- We had a problem with our server. Try again later.</td>
+<td>400</td>
+<td>Password incorrect</td>
 </tr>
 <tr>
-<td>503</td>
-<td>Service Unavailable -- We&#39;re temporarily offline for maintenance. Please try again later.</td>
+<td>400</td>
+<td>User not found</td>
+</tr>
+</tbody></table>
+
+<p><h1 id='forecast-endpoint'>Forecast Endpoint</h1><h2 id='retrieve-weather-for-a-city'>Retrieve weather for a city</h2><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="kd">var</span> <span class="nx">myHeaders</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Headers</span><span class="p">();</span>
+<span class="nx">myHeaders</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="dl">&quot;</span><span class="s2">Content-Type</span><span class="dl">&quot;</span><span class="p">,</span> <span class="dl">&quot;</span><span class="s2">application/json</span><span class="dl">&quot;</span><span class="p">);</span></p>
+
+<p><span class="kd">var</span> <span class="nx">raw</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">({</span>
+  <span class="dl">&quot;</span><span class="s2">location</span><span class="dl">&quot;</span><span class="p">:</span> <span class="dl">&quot;</span><span class="s2">denver,co</span><span class="dl">&quot;</span>
+<span class="p">});</span></p>
+
+<p><span class="kd">var</span> <span class="nx">requestOptions</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">method</span><span class="p">:</span> <span class="dl">&#39;</span><span class="s1">GET</span><span class="dl">&#39;</span><span class="p">,</span>
+  <span class="na">headers</span><span class="p">:</span> <span class="nx">myHeaders</span><span class="p">,</span>
+  <span class="na">body</span><span class="p">:</span> <span class="nx">raw</span><span class="p">,</span>
+  <span class="na">redirect</span><span class="p">:</span> <span class="dl">&#39;</span><span class="s1">follow</span><span class="dl">&#39;</span>
+<span class="p">};</span></p>
+
+<p><span class="nx">fetch</span><span class="p">(</span><span class="dl">&quot;</span><span class="s2">https://joe-mecha-whether-sweater.herokuapp.com/api/v1/forecast</span><span class="dl">&quot;</span><span class="p">,</span> <span class="nx">requestOptions</span><span class="p">)</span>
+  <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">response</span> <span class="o">=&gt;</span> <span class="nx">response</span><span class="p">.</span><span class="nx">text</span><span class="p">())</span>
+  <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">result</span> <span class="o">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">result</span><span class="p">))</span>
+  <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="nx">error</span> <span class="o">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">&#39;</span><span class="s1">error</span><span class="dl">&#39;</span><span class="p">,</span> <span class="nx">error</span><span class="p">));</span>
+</code></pre></div><div class="highlight"><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s2">&quot;uri&quot;</span>
+<span class="nb">require</span> <span class="s2">&quot;json&quot;</span>
+<span class="nb">require</span> <span class="s2">&quot;net/http&quot;</span></p>
+
+<p><span class="n">url</span> <span class="o">=</span> <span class="no">URI</span><span class="p">(</span><span class="s2">&quot;https://joe-mecha-whether-sweater.herokuapp.com/api/v1/forecast&quot;</span><span class="p">)</span></p>
+
+<p><span class="n">http</span> <span class="o">=</span> <span class="no">Net</span><span class="o">::</span><span class="no">HTTP</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="n">url</span><span class="p">.</span><span class="nf">host</span><span class="p">,</span> <span class="n">url</span><span class="p">.</span><span class="nf">port</span><span class="p">);</span>
+<span class="n">request</span> <span class="o">=</span> <span class="no">Net</span><span class="o">::</span><span class="no">HTTP</span><span class="o">::</span><span class="no">Get</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+<span class="n">request</span><span class="p">[</span><span class="s2">&quot;Content-Type&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;application/json&quot;</span>
+<span class="n">request</span><span class="p">.</span><span class="nf">body</span> <span class="o">=</span> <span class="no">JSON</span><span class="p">.</span><span class="nf">dump</span><span class="p">({</span>
+  <span class="s2">&quot;location&quot;</span><span class="p">:</span> <span class="s2">&quot;denver,co&quot;</span>
+<span class="p">})</span></p>
+
+<p><span class="n">response</span> <span class="o">=</span> <span class="n">http</span><span class="p">.</span><span class="nf">request</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
+<span class="nb">puts</span> <span class="n">response</span><span class="p">.</span><span class="nf">read_body</span>
+</code></pre></div><div class="highlight"><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">http.client</span>
+<span class="kn">import</span> <span class="nn">json</span></p>
+
+<p><span class="n">conn</span> <span class="o">=</span> <span class="n">http</span><span class="p">.</span><span class="n">client</span><span class="p">.</span><span class="n">HTTPSConnection</span><span class="p">(</span><span class="s">&quot;joe-mecha-whether-sweater.herokuapp.com&quot;</span><span class="p">)</span>
+<span class="n">payload</span> <span class="o">=</span> <span class="n">json</span><span class="p">.</span><span class="n">dumps</span><span class="p">({</span>
+  <span class="s">&quot;location&quot;</span><span class="p">:</span> <span class="s">&quot;denver,co&quot;</span>
+<span class="p">})</span>
+<span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="s">&#39;Content-Type&#39;</span><span class="p">:</span> <span class="s">&#39;application/json&#39;</span>
+<span class="p">}</span>
+<span class="n">conn</span><span class="p">.</span><span class="n">request</span><span class="p">(</span><span class="s">&quot;GET&quot;</span><span class="p">,</span> <span class="s">&quot;/api/v1/forecast&quot;</span><span class="p">,</span> <span class="n">payload</span><span class="p">,</span> <span class="n">headers</span><span class="p">)</span>
+<span class="n">res</span> <span class="o">=</span> <span class="n">conn</span><span class="p">.</span><span class="n">getresponse</span><span class="p">()</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">res</span><span class="p">.</span><span class="n">read</span><span class="p">()</span>
+<span class="k">print</span><span class="p">(</span><span class="n">data</span><span class="p">.</span><span class="n">decode</span><span class="p">(</span><span class="s">&quot;utf-8&quot;</span><span class="p">))</span>
+</code></pre></div>
+<blockquote>
+<p>This is the expected response</p>
+
+<p></blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="nl">&quot;data&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="nl">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;forecast&quot;</span><span class="p">,</span><span class="w">
+        </span><span class="nl">&quot;attributes&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nl">&quot;current_weather&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="nl">&quot;datetime&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2021-08-19 01:32:11 +0000&quot;</span><span class="p">,</span><span class="w">
+                </span><span class="nl">&quot;sunrise&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2021-08-18 12:15:18 +0000&quot;</span><span class="p">,</span><span class="w">
+                </span><span class="nl">&quot;sunset&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2021-08-19 01:52:26 +0000&quot;</span><span class="p">,</span><span class="w">
+                </span><span class="nl">&quot;temperature&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">84.38</span><span class="p">,</span><span class="w">
+                </span><span class="nl">&quot;feels_like&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">81.95</span><span class="p">,</span><span class="w">
+                </span><span class="nl">&quot;humidity&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">26</span><span class="p">,</span><span class="w">
+                </span><span class="nl">&quot;uvi&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                </span><span class="nl">&quot;visibility&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">10000</span><span class="p">,</span><span class="w">
+                </span><span class="nl">&quot;conditions&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;overcast clouds&quot;</span><span class="p">,</span><span class="w">
+                </span><span class="nl">&quot;icon&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;04d&quot;</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="nl">&quot;daily_weather&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="nl">&quot;date&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2021-08-18 19:00:00 +0000&quot;</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">&quot;sunrise&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2021-08-18 12:15:18 +0000&quot;</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">&quot;sunset&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2021-08-19 01:52:26 +0000&quot;</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">&quot;max_temp&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">94.93</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">&quot;min_temp&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">69.76</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">&quot;conditions&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;light rain&quot;</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">&quot;icon&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;10d&quot;</span><span class="w">
+                </span><span class="p">}</span><span class="w">
+            </span><span class="p">],</span><span class="w">
+            </span><span class="nl">&quot;hourly_weather&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="nl">&quot;time&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;01:00:00&quot;</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">&quot;temperature&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">85.53</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">&quot;conditions&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;overcast clouds&quot;</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">&quot;icon&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;04d&quot;</span><span class="w">
+                </span><span class="p">}</span><span class="w">
+            </span><span class="p">]</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><h3 id='description'>Description</h3>
+<p>Retrieve specified weather data for a logged in user.</p>
+<h3 id='request-information'>Request Information</h3>
+<table><thead>
+<tr>
+<th>Category</th>
+<th>Value</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Http request</td>
+<td>&#39;GET&#39;</td>
+</tr>
+<tr>
+<td>URL</td>
+<td>https://joe-mecha-whether-sweater.herokuapp.com/api/v1/forecast</td>
+</tr>
+</tbody></table>
+<h3 id='headers'>Headers</h3>
+<p>No headers required</p>
+<h3 id='input-schema-for-requests'>Input Schema for Requests</h3>
+<table><thead>
+<tr>
+<th>Field</th>
+<th>Meaning</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>location</td>
+<td>city,state_abbreviation</td>
+</tr>
+</tbody></table>
+<h3 id='output-schema-of-request'>Output Schema of Request</h3>
+<table><thead>
+<tr>
+<th>Field</th>
+<th>Meaning</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>data</td>
+<td>container for response data</td>
+</tr>
+<tr>
+<td>id</td>
+<td>id</td>
+</tr>
+<tr>
+<td>type</td>
+<td>location in database</td>
+</tr>
+<tr>
+<td>attributes</td>
+<td>container for data of created user</td>
+</tr>
+<tr>
+<td>current_weather</td>
+<td>container for current weather data</td>
+</tr>
+<tr>
+<td>datetime</td>
+<td>YYYY-MM-DD HH:MM:SS</td>
+</tr>
+<tr>
+<td>sunrise</td>
+<td>YYYY-MM-DD HH:MM:SS</td>
+</tr>
+<tr>
+<td>sunset</td>
+<td>YYYY-MM-DD HH:MM:SS</td>
+</tr>
+<tr>
+<td>temperature</td>
+<td>current temperature in degrees Fahrenheit</td>
+</tr>
+<tr>
+<td>feels_like</td>
+<td>feels like temperature in degrees Fahrenheit</td>
+</tr>
+<tr>
+<td>humidity</td>
+<td>percent as two-digit number</td>
+</tr>
+<tr>
+<td>uvi</td>
+<td>ultraviolet index</td>
+</tr>
+<tr>
+<td>visibility</td>
+<td>given in feet</td>
+</tr>
+<tr>
+<td>conditions</td>
+<td>Short description of conditions</td>
+</tr>
+<tr>
+<td>icon</td>
+<td>weather icon</td>
+</tr>
+<tr>
+<td>------</td>
+<td>------</td>
+</tr>
+<tr>
+<td>daily_weather</td>
+<td>container for daily weather data</td>
+</tr>
+<tr>
+<td>date</td>
+<td>YYYY-MM-DD HH:MM:SS</td>
+</tr>
+<tr>
+<td>sunrise</td>
+<td>YYYY-MM-DD HH:MM:SS</td>
+</tr>
+<tr>
+<td>sunset</td>
+<td>YYYY-MM-DD HH:MM:SS</td>
+</tr>
+<tr>
+<td>max_temp</td>
+<td>maximum daily temperature in degrees Fahrenheit</td>
+</tr>
+<tr>
+<td>min_temp</td>
+<td>minimum daily temperature in degrees Fahrenheit</td>
+</tr>
+<tr>
+<td>conditions</td>
+<td>Short description of conditions</td>
+</tr>
+<tr>
+<td>icon</td>
+<td>weather icon</td>
+</tr>
+<tr>
+<td>------</td>
+<td>------</td>
+</tr>
+<tr>
+<td>hourly_weather</td>
+<td>container for hourly weather data</td>
+</tr>
+<tr>
+<td>time</td>
+<td>HH:MM:SS</td>
+</tr>
+<tr>
+<td>temperature</td>
+<td>in degrees Fahrenheit</td>
+</tr>
+<tr>
+<td>conditions</td>
+<td>short description of conditions</td>
+</tr>
+<tr>
+<td>icon</td>
+<td>weather icon</td>
+</tr>
+</tbody></table></p></p>
+
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Message</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>200</td>
+<td>OK</td>
+</tr>
+<tr>
+<td>400</td>
+<td>Missing or incorrect location</td>
+</tr>
+</tbody></table>
+
+<p><h1 id='backgrounds-endpoint'>Backgrounds Endpoint</h1><h2 id='retrieve-a-background-image-for-a-city'>Retrieve a background image for a city</h2><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="kd">var</span> <span class="nx">myHeaders</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Headers</span><span class="p">();</span>
+<span class="nx">myHeaders</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="dl">&quot;</span><span class="s2">Content-Type</span><span class="dl">&quot;</span><span class="p">,</span> <span class="dl">&quot;</span><span class="s2">application/json</span><span class="dl">&quot;</span><span class="p">);</span></p>
+
+<p><span class="kd">var</span> <span class="nx">raw</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">({</span>
+  <span class="dl">&quot;</span><span class="s2">location</span><span class="dl">&quot;</span><span class="p">:</span> <span class="dl">&quot;</span><span class="s2">denver,co</span><span class="dl">&quot;</span>
+<span class="p">});</span></p>
+
+<p><span class="kd">var</span> <span class="nx">requestOptions</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">method</span><span class="p">:</span> <span class="dl">&#39;</span><span class="s1">GET</span><span class="dl">&#39;</span><span class="p">,</span>
+  <span class="na">headers</span><span class="p">:</span> <span class="nx">myHeaders</span><span class="p">,</span>
+  <span class="na">body</span><span class="p">:</span> <span class="nx">raw</span><span class="p">,</span>
+  <span class="na">redirect</span><span class="p">:</span> <span class="dl">&#39;</span><span class="s1">follow</span><span class="dl">&#39;</span>
+<span class="p">};</span></p>
+
+<p><span class="nx">fetch</span><span class="p">(</span><span class="dl">&quot;</span><span class="s2">https://joe-mecha-whether-sweater.herokuapp.com/api/v1/backgrounds</span><span class="dl">&quot;</span><span class="p">,</span> <span class="nx">requestOptions</span><span class="p">)</span>
+  <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">response</span> <span class="o">=&gt;</span> <span class="nx">response</span><span class="p">.</span><span class="nx">text</span><span class="p">())</span>
+  <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">result</span> <span class="o">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">result</span><span class="p">))</span>
+  <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="nx">error</span> <span class="o">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">&#39;</span><span class="s1">error</span><span class="dl">&#39;</span><span class="p">,</span> <span class="nx">error</span><span class="p">));</span>
+</code></pre></div><div class="highlight"><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s2">&quot;uri&quot;</span>
+<span class="nb">require</span> <span class="s2">&quot;json&quot;</span>
+<span class="nb">require</span> <span class="s2">&quot;net/http&quot;</span></p>
+
+<p><span class="n">url</span> <span class="o">=</span> <span class="no">URI</span><span class="p">(</span><span class="s2">&quot;https://joe-mecha-whether-sweater.herokuapp.com/api/v1/backgrounds&quot;</span><span class="p">)</span></p>
+
+<p><span class="n">https</span> <span class="o">=</span> <span class="no">Net</span><span class="o">::</span><span class="no">HTTP</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="n">url</span><span class="p">.</span><span class="nf">host</span><span class="p">,</span> <span class="n">url</span><span class="p">.</span><span class="nf">port</span><span class="p">)</span>
+<span class="n">https</span><span class="p">.</span><span class="nf">use_ssl</span> <span class="o">=</span> <span class="kp">true</span></p>
+
+<p><span class="n">request</span> <span class="o">=</span> <span class="no">Net</span><span class="o">::</span><span class="no">HTTP</span><span class="o">::</span><span class="no">Get</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+<span class="n">request</span><span class="p">[</span><span class="s2">&quot;Content-Type&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;application/json&quot;</span>
+<span class="n">request</span><span class="p">.</span><span class="nf">body</span> <span class="o">=</span> <span class="no">JSON</span><span class="p">.</span><span class="nf">dump</span><span class="p">({</span>
+  <span class="s2">&quot;location&quot;</span><span class="p">:</span> <span class="s2">&quot;denver,co&quot;</span>
+<span class="p">})</span></p>
+
+<p><span class="n">response</span> <span class="o">=</span> <span class="n">https</span><span class="p">.</span><span class="nf">request</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
+<span class="nb">puts</span> <span class="n">response</span><span class="p">.</span><span class="nf">read_body</span>
+</code></pre></div><div class="highlight"><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">http.client</span>
+<span class="kn">import</span> <span class="nn">json</span></p>
+
+<p><span class="n">conn</span> <span class="o">=</span> <span class="n">http</span><span class="p">.</span><span class="n">client</span><span class="p">.</span><span class="n">HTTPSConnection</span><span class="p">(</span><span class="s">&quot;joe-mecha-whether-sweater.herokuapp.com&quot;</span><span class="p">)</span>
+<span class="n">payload</span> <span class="o">=</span> <span class="n">json</span><span class="p">.</span><span class="n">dumps</span><span class="p">({</span>
+  <span class="s">&quot;location&quot;</span><span class="p">:</span> <span class="s">&quot;denver,co&quot;</span>
+<span class="p">})</span>
+<span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="s">&#39;Content-Type&#39;</span><span class="p">:</span> <span class="s">&#39;application/json&#39;</span>
+<span class="p">}</span>
+<span class="n">conn</span><span class="p">.</span><span class="n">request</span><span class="p">(</span><span class="s">&quot;GET&quot;</span><span class="p">,</span> <span class="s">&quot;/api/v1/backgrounds&quot;</span><span class="p">,</span> <span class="n">payload</span><span class="p">,</span> <span class="n">headers</span><span class="p">)</span>
+<span class="n">res</span> <span class="o">=</span> <span class="n">conn</span><span class="p">.</span><span class="n">getresponse</span><span class="p">()</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">res</span><span class="p">.</span><span class="n">read</span><span class="p">()</span>
+<span class="k">print</span><span class="p">(</span><span class="n">data</span><span class="p">.</span><span class="n">decode</span><span class="p">(</span><span class="s">&quot;utf-8&quot;</span><span class="p">))</span>
+</code></pre></div>
+<blockquote>
+<p>This is the expected response</p>
+
+<p></blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="nl">&quot;data&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="nl">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;image&quot;</span><span class="p">,</span><span class="w">
+        </span><span class="nl">&quot;attributes&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nl">&quot;image&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="nl">&quot;image_url&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://images.example.com/photo-16...&quot;</span><span class="p">,</span><span class="w">
+                </span><span class="nl">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Twilight in Downtown Denver&quot;</span><span class="p">,</span><span class="w">
+                </span><span class="nl">&quot;credits&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="nl">&quot;author&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Josh&quot;</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">&quot;source&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://example.com/@joshperson&quot;</span><span class="w">
+                </span><span class="p">}</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><h3 id='description'>Description</h3>
+<p>Retrieve a background image for the provided city.</p>
+<h3 id='request-information'>Request Information</h3>
+<table><thead>
+<tr>
+<th>Category</th>
+<th>Value</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Http request</td>
+<td>&#39;GET&#39;</td>
+</tr>
+<tr>
+<td>URL</td>
+<td>https://joe-mecha-whether-sweater.herokuapp.com/api/v1/backgrounds</td>
+</tr>
+</tbody></table>
+<h3 id='headers'>Headers</h3>
+<p>No headers required</p>
+<h3 id='input-schema-for-requests'>Input Schema for Requests</h3>
+<table><thead>
+<tr>
+<th>Field</th>
+<th>Meaning</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>location</td>
+<td>city,state_abbreviation</td>
+</tr>
+</tbody></table>
+<h3 id='output-schema-of-request'>Output Schema of Request</h3>
+<table><thead>
+<tr>
+<th>Field</th>
+<th>Meaning</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>data</td>
+<td>container for response data</td>
+</tr>
+<tr>
+<td>id</td>
+<td>id</td>
+</tr>
+<tr>
+<td>type</td>
+<td>location in database</td>
+</tr>
+<tr>
+<td>attributes</td>
+<td>container for data of created user</td>
+</tr>
+<tr>
+<td>image</td>
+<td>container for image data</td>
+</tr>
+<tr>
+<td>image_url</td>
+<td>web address of image</td>
+</tr>
+<tr>
+<td>description</td>
+<td>Short description of image</td>
+</tr>
+<tr>
+<td>credits</td>
+<td>container for image credit data</td>
+</tr>
+<tr>
+<td>author</td>
+<td>photographer&#39;s name</td>
+</tr>
+<tr>
+<td>source</td>
+<td>photographer&#39;s web address</td>
+</tr>
+</tbody></table></p></p>
+
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Message</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>200</td>
+<td>OK</td>
+</tr>
+<tr>
+<td>400</td>
+<td>Missing or incorrect location</td>
+</tr>
+</tbody></table>
+
+<p><h1 id='road-trip-endpoint'>Road Trip Endpoint</h1><h2 id='create-road-trip'>Create Road Trip</h2><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="kd">var</span> <span class="nx">myHeaders</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Headers</span><span class="p">();</span>
+<span class="nx">myHeaders</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="dl">&quot;</span><span class="s2">Content-Type</span><span class="dl">&quot;</span><span class="p">,</span> <span class="dl">&quot;</span><span class="s2">application/json</span><span class="dl">&quot;</span><span class="p">);</span></p>
+
+<p><span class="kd">var</span> <span class="nx">raw</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">({</span>
+  <span class="dl">&quot;</span><span class="s2">origin</span><span class="dl">&quot;</span><span class="p">:</span> <span class="dl">&quot;</span><span class="s2">denver,co</span><span class="dl">&quot;</span><span class="p">,</span>
+  <span class="dl">&quot;</span><span class="s2">destination</span><span class="dl">&quot;</span><span class="p">:</span> <span class="dl">&quot;</span><span class="s2">lake city,co</span><span class="dl">&quot;</span><span class="p">,</span>
+  <span class="dl">&quot;</span><span class="s2">api_key</span><span class="dl">&quot;</span><span class="p">:</span> <span class="dl">&quot;</span><span class="s2">jgn983hy48thw9begh98h4539h4</span><span class="dl">&quot;</span>
+<span class="p">});</span></p>
+
+<p><span class="kd">var</span> <span class="nx">requestOptions</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">method</span><span class="p">:</span> <span class="dl">&#39;</span><span class="s1">POST</span><span class="dl">&#39;</span><span class="p">,</span>
+  <span class="na">headers</span><span class="p">:</span> <span class="nx">myHeaders</span><span class="p">,</span>
+  <span class="na">body</span><span class="p">:</span> <span class="nx">raw</span><span class="p">,</span>
+  <span class="na">redirect</span><span class="p">:</span> <span class="dl">&#39;</span><span class="s1">follow</span><span class="dl">&#39;</span>
+<span class="p">};</span></p>
+
+<p><span class="nx">fetch</span><span class="p">(</span><span class="dl">&quot;</span><span class="s2">http.client.HTTPSConnection(</span><span class="dl">&quot;</span><span class="nx">joe</span><span class="o">-</span><span class="nx">mecha</span><span class="o">-</span><span class="nx">whether</span><span class="o">-</span><span class="nx">sweater</span><span class="p">.</span><span class="nx">herokuapp</span><span class="p">.</span><span class="nx">com</span><span class="dl">&quot;</span><span class="s2">)/api/v1/road_trip</span><span class="dl">&quot;</span><span class="p">,</span> <span class="nx">requestOptions</span><span class="p">)</span>
+  <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">response</span> <span class="o">=&gt;</span> <span class="nx">response</span><span class="p">.</span><span class="nx">text</span><span class="p">())</span>
+  <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">result</span> <span class="o">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">result</span><span class="p">))</span>
+  <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="nx">error</span> <span class="o">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">&#39;</span><span class="s1">error</span><span class="dl">&#39;</span><span class="p">,</span> <span class="nx">error</span><span class="p">));</span>
+</code></pre></div><div class="highlight"><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s2">&quot;uri&quot;</span>
+<span class="nb">require</span> <span class="s2">&quot;json&quot;</span>
+<span class="nb">require</span> <span class="s2">&quot;net/http&quot;</span></p>
+
+<p><span class="n">url</span> <span class="o">=</span> <span class="no">URI</span><span class="p">(</span><span class="s2">&quot;http.client.HTTPSConnection(&quot;</span><span class="n">joe</span><span class="o">-</span><span class="n">mecha</span><span class="o">-</span><span class="n">whether</span><span class="o">-</span><span class="n">sweater</span><span class="p">.</span><span class="nf">herokuapp</span><span class="p">.</span><span class="nf">com</span><span class="s2">&quot;)/api/v1/road_trip&quot;</span><span class="p">)</span></p>
+
+<p><span class="n">http</span> <span class="o">=</span> <span class="no">Net</span><span class="o">::</span><span class="no">HTTP</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="n">url</span><span class="p">.</span><span class="nf">host</span><span class="p">,</span> <span class="n">url</span><span class="p">.</span><span class="nf">port</span><span class="p">);</span>
+<span class="n">request</span> <span class="o">=</span> <span class="no">Net</span><span class="o">::</span><span class="no">HTTP</span><span class="o">::</span><span class="no">Post</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+<span class="n">request</span><span class="p">[</span><span class="s2">&quot;Content-Type&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;application/json&quot;</span>
+<span class="n">request</span><span class="p">.</span><span class="nf">body</span> <span class="o">=</span> <span class="no">JSON</span><span class="p">.</span><span class="nf">dump</span><span class="p">({</span>
+  <span class="s2">&quot;origin&quot;</span><span class="p">:</span> <span class="s2">&quot;denver,co&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;destination&quot;</span><span class="p">:</span> <span class="s2">&quot;lake city,co&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;api_key&quot;</span><span class="p">:</span> <span class="s2">&quot;jgn983hy48thw9begh98h4539h4&quot;</span>
+<span class="p">})</span></p>
+
+<p><span class="n">response</span> <span class="o">=</span> <span class="n">http</span><span class="p">.</span><span class="nf">request</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
+<span class="nb">puts</span> <span class="n">response</span><span class="p">.</span><span class="nf">read_body</span></p>
+
+<p></code></pre></div><div class="highlight"><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">http.client</span>
+<span class="kn">import</span> <span class="nn">json</span></p>
+
+<p><span class="n">conn</span> <span class="o">=</span> <span class="n">http</span><span class="p">.</span><span class="n">client</span><span class="p">.</span><span class="n">HTTPSConnection</span><span class="p">(</span><span class="s">&quot;joe-mecha-whether-sweater.herokuapp.com&quot;</span><span class="p">)</span>
+<span class="n">payload</span> <span class="o">=</span> <span class="n">json</span><span class="p">.</span><span class="n">dumps</span><span class="p">({</span>
+  <span class="s">&quot;origin&quot;</span><span class="p">:</span> <span class="s">&quot;denver,co&quot;</span><span class="p">,</span>
+  <span class="s">&quot;destination&quot;</span><span class="p">:</span> <span class="s">&quot;lake city,co&quot;</span><span class="p">,</span>
+  <span class="s">&quot;api_key&quot;</span><span class="p">:</span> <span class="s">&quot;jgn983hy48thw9begh98h4539h4&quot;</span>
+<span class="p">})</span>
+<span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="s">&#39;Content-Type&#39;</span><span class="p">:</span> <span class="s">&#39;application/json&#39;</span>
+<span class="p">}</span>
+<span class="n">conn</span><span class="p">.</span><span class="n">request</span><span class="p">(</span><span class="s">&quot;POST&quot;</span><span class="p">,</span> <span class="s">&quot;/api/v1/road_trip&quot;</span><span class="p">,</span> <span class="n">payload</span><span class="p">,</span> <span class="n">headers</span><span class="p">)</span>
+<span class="n">res</span> <span class="o">=</span> <span class="n">conn</span><span class="p">.</span><span class="n">getresponse</span><span class="p">()</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">res</span><span class="p">.</span><span class="n">read</span><span class="p">()</span>
+<span class="k">print</span><span class="p">(</span><span class="n">data</span><span class="p">.</span><span class="n">decode</span><span class="p">(</span><span class="s">&quot;utf-8&quot;</span><span class="p">))</span>
+</code></pre></div>
+<blockquote>
+<p>This is the expected response</p>
+
+<p></blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="nl">&quot;data&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="nl">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;road_trip&quot;</span><span class="p">,</span><span class="w">
+        </span><span class="nl">&quot;attributes&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nl">&quot;start_city&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Denver, CO&quot;</span><span class="p">,</span><span class="w">
+            </span><span class="nl">&quot;end_city&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Lake City, CO&quot;</span><span class="p">,</span><span class="w">
+            </span><span class="nl">&quot;travel_time&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;4 hours and 50 minutes&quot;</span><span class="p">,</span><span class="w">
+            </span><span class="nl">&quot;weather_at_eta&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="nl">&quot;temperature&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">61.25</span><span class="p">,</span><span class="w">
+                </span><span class="nl">&quot;conditions&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;overcast clouds&quot;</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><h3 id='description'>Description</h3>
+<p>To be utilized by the front end. Provides travel time and weather forecast for the destination at the ETA.</p>
+<h3 id='request-information'>Request Information</h3>
+<table><thead>
+<tr>
+<th>Category</th>
+<th>Value</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Http request</td>
+<td>&#39;POST&#39;</td>
+</tr>
+<tr>
+<td>URL</td>
+<td>https://joe-mecha-whether-sweater.herokuapp.com/api/v1/road_trip</td>
+</tr>
+</tbody></table>
+<h3 id='headers'>Headers</h3>
+<p>No headers required</p>
+<h3 id='input-schema-for-requests'>Input Schema for Requests</h3>
+<table><thead>
+<tr>
+<th>Field</th>
+<th>Meaning</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>origin</td>
+<td>user&#39;s starting point; city,state_abbreviation</td>
+</tr>
+<tr>
+<td>destination</td>
+<td>user&#39;s end point; city,state_abbreviation</td>
+</tr>
+<tr>
+<td>api_key</td>
+<td>user&#39;s valid api_key</td>
+</tr>
+</tbody></table>
+<h3 id='output-schema-of-request'>Output Schema of Request</h3>
+<table><thead>
+<tr>
+<th>Field</th>
+<th>Meaning</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>data</td>
+<td>container for response data</td>
+</tr>
+<tr>
+<td>id</td>
+<td>user id</td>
+</tr>
+<tr>
+<td>type</td>
+<td>location in database</td>
+</tr>
+<tr>
+<td>attributes</td>
+<td>container for data of created user</td>
+</tr>
+<tr>
+<td>start_city</td>
+<td>City, State_abbreviation</td>
+</tr>
+<tr>
+<td>end_city</td>
+<td>City, State_abbreviation</td>
+</tr>
+<tr>
+<td>travel_time</td>
+<td>X days X hours and X minutes</td>
+</tr>
+<tr>
+<td>weather_at_eta</td>
+<td>container for weather data</td>
+</tr>
+<tr>
+<td>temperature</td>
+<td>given in degrees Fahrenheit</td>
+</tr>
+<tr>
+<td>conditions</td>
+<td>short description of weather conditions</td>
+</tr>
+</tbody></table></p></p>
+
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Message</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>200</td>
+<td>OK</td>
+</tr>
+<tr>
+<td>400</td>
+<td>Missing or incorrect origin and or location</td>
+</tr>
+<tr>
+<td>400</td>
+<td>Missing or incorrect key</td>
+</tr>
+<tr>
+<td>400</td>
+<td>Impossible route</td>
+</tr>
+</tbody></table>
+
+<p><h1 id='book-search-endpoint'>Book Search Endpoint</h1><h2 id='retrieve-a-list-of-books-for-a-well-known-city'>Retrieve a list of books for a (well-known) city</h2><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="kd">var</span> <span class="nx">myHeaders</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Headers</span><span class="p">();</span>
+<span class="nx">myHeaders</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="dl">&quot;</span><span class="s2">Content-Type</span><span class="dl">&quot;</span><span class="p">,</span> <span class="dl">&quot;</span><span class="s2">application/json</span><span class="dl">&quot;</span><span class="p">);</span></p>
+
+<p><span class="kd">var</span> <span class="nx">raw</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">({</span>
+  <span class="dl">&quot;</span><span class="s2">location</span><span class="dl">&quot;</span><span class="p">:</span> <span class="dl">&quot;</span><span class="s2">denver,co</span><span class="dl">&quot;</span><span class="p">,</span>
+  <span class="dl">&quot;</span><span class="s2">quantity</span><span class="dl">&quot;</span><span class="p">:</span> <span class="dl">&quot;</span><span class="s2">3</span><span class="dl">&quot;</span>
+<span class="p">});</span></p>
+
+<p><span class="kd">var</span> <span class="nx">requestOptions</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">method</span><span class="p">:</span> <span class="dl">&#39;</span><span class="s1">GET</span><span class="dl">&#39;</span><span class="p">,</span>
+  <span class="na">headers</span><span class="p">:</span> <span class="nx">myHeaders</span><span class="p">,</span>
+  <span class="na">body</span><span class="p">:</span> <span class="nx">raw</span><span class="p">,</span>
+  <span class="na">redirect</span><span class="p">:</span> <span class="dl">&#39;</span><span class="s1">follow</span><span class="dl">&#39;</span>
+<span class="p">};</span></p>
+
+<p><span class="nx">fetch</span><span class="p">(</span><span class="dl">&quot;</span><span class="s2">https://joe-mecha-whether-sweater.herokuapp.com/api/v1/book-search</span><span class="dl">&quot;</span><span class="p">,</span> <span class="nx">requestOptions</span><span class="p">)</span>
+  <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">response</span> <span class="o">=&gt;</span> <span class="nx">response</span><span class="p">.</span><span class="nx">text</span><span class="p">())</span>
+  <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">result</span> <span class="o">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">result</span><span class="p">))</span>
+  <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="nx">error</span> <span class="o">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">&#39;</span><span class="s1">error</span><span class="dl">&#39;</span><span class="p">,</span> <span class="nx">error</span><span class="p">));</span>
+</code></pre></div><div class="highlight"><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s2">&quot;uri&quot;</span>
+<span class="nb">require</span> <span class="s2">&quot;json&quot;</span>
+<span class="nb">require</span> <span class="s2">&quot;net/http&quot;</span></p>
+
+<p><span class="n">url</span> <span class="o">=</span> <span class="no">URI</span><span class="p">(</span><span class="s2">&quot;https://joe-mecha-whether-sweater.herokuapp.com/api/v1/book-search&quot;</span><span class="p">)</span></p>
+
+<p><span class="n">https</span> <span class="o">=</span> <span class="no">Net</span><span class="o">::</span><span class="no">HTTP</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="n">url</span><span class="p">.</span><span class="nf">host</span><span class="p">,</span> <span class="n">url</span><span class="p">.</span><span class="nf">port</span><span class="p">)</span>
+<span class="n">https</span><span class="p">.</span><span class="nf">use_ssl</span> <span class="o">=</span> <span class="kp">true</span></p>
+
+<p><span class="n">request</span> <span class="o">=</span> <span class="no">Net</span><span class="o">::</span><span class="no">HTTP</span><span class="o">::</span><span class="no">Get</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+<span class="n">request</span><span class="p">[</span><span class="s2">&quot;Content-Type&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;application/json&quot;</span>
+<span class="n">request</span><span class="p">.</span><span class="nf">body</span> <span class="o">=</span> <span class="no">JSON</span><span class="p">.</span><span class="nf">dump</span><span class="p">({</span>
+  <span class="s2">&quot;location&quot;</span><span class="p">:</span> <span class="s2">&quot;denver,co&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;quantity&quot;</span><span class="p">:</span> <span class="s2">&quot;3&quot;</span>
+<span class="p">})</span></p>
+
+<p><span class="n">response</span> <span class="o">=</span> <span class="n">https</span><span class="p">.</span><span class="nf">request</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
+<span class="nb">puts</span> <span class="n">response</span><span class="p">.</span><span class="nf">read_body</span>
+</code></pre></div><div class="highlight"><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">http.client</span>
+<span class="kn">import</span> <span class="nn">json</span></p>
+
+<p><span class="n">conn</span> <span class="o">=</span> <span class="n">http</span><span class="p">.</span><span class="n">client</span><span class="p">.</span><span class="n">HTTPSConnection</span><span class="p">(</span><span class="s">&quot;joe-mecha-whether-sweater.herokuapp.com&quot;</span><span class="p">)</span>
+<span class="n">payload</span> <span class="o">=</span> <span class="n">json</span><span class="p">.</span><span class="n">dumps</span><span class="p">({</span>
+  <span class="s">&quot;location&quot;</span><span class="p">:</span> <span class="s">&quot;denver,co&quot;</span><span class="p">,</span>
+  <span class="s">&quot;quantity&quot;</span><span class="p">:</span> <span class="s">&quot;3&quot;</span>
+<span class="p">})</span>
+<span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="s">&#39;Content-Type&#39;</span><span class="p">:</span> <span class="s">&#39;application/json&#39;</span>
+<span class="p">}</span>
+<span class="n">conn</span><span class="p">.</span><span class="n">request</span><span class="p">(</span><span class="s">&quot;GET&quot;</span><span class="p">,</span> <span class="s">&quot;/api/v1/book-search&quot;</span><span class="p">,</span> <span class="n">payload</span><span class="p">,</span> <span class="n">headers</span><span class="p">)</span>
+<span class="n">res</span> <span class="o">=</span> <span class="n">conn</span><span class="p">.</span><span class="n">getresponse</span><span class="p">()</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">res</span><span class="p">.</span><span class="n">read</span><span class="p">()</span>
+<span class="k">print</span><span class="p">(</span><span class="n">data</span><span class="p">.</span><span class="n">decode</span><span class="p">(</span><span class="s">&quot;utf-8&quot;</span><span class="p">))</span>
+</code></pre></div>
+<blockquote>
+<p>This is the expected response</p>
+
+<p></blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="nl">&quot;data&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="nl">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;books&quot;</span><span class="p">,</span><span class="w">
+        </span><span class="nl">&quot;attributes&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nl">&quot;destination&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;denver,co&quot;</span><span class="p">,</span><span class="w">
+            </span><span class="nl">&quot;forecast&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="nl">&quot;summary&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;overcast clouds&quot;</span><span class="p">,</span><span class="w">
+                </span><span class="nl">&quot;temperature&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;83 F&quot;</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="nl">&quot;total_books_found&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">35990</span><span class="p">,</span><span class="w">
+            </span><span class="nl">&quot;books&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="nl">&quot;isbn&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                        </span><span class="s2">&quot;9780762507849&quot;</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">&quot;0762507845&quot;</span><span class="w">
+                    </span><span class="p">],</span><span class="w">
+                    </span><span class="nl">&quot;title&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Denver, Co&quot;</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">&quot;publisher&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                        </span><span class="s2">&quot;Universal Map Enterprises&quot;</span><span class="w">
+                    </span><span class="p">]</span><span class="w">
+                </span><span class="p">}</span><span class="w">
+                </span><span class="err">}</span><span class="w">
+            </span><span class="p">]</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><h3 id='description'>Description</h3>
+<p>Retrieve a list of books for a (well-known) city.</p>
+<h3 id='request-information'>Request Information</h3>
+<table><thead>
+<tr>
+<th>Category</th>
+<th>Value</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Http request</td>
+<td>&#39;GET&#39;</td>
+</tr>
+<tr>
+<td>URL</td>
+<td>https://joe-mecha-whether-sweater.herokuapp.com/api/v1/booksearch</td>
+</tr>
+</tbody></table>
+<h3 id='headers'>Headers</h3>
+<p>No headers required</p>
+<h3 id='input-schema-for-requests'>Input Schema for Requests</h3>
+<table><thead>
+<tr>
+<th>Field</th>
+<th>Meaning</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>location</td>
+<td>city,state_abbreviation</td>
+</tr>
+<tr>
+<td>quantity*</td>
+<td>number of books desired, *optional</td>
+</tr>
+</tbody></table>
+<h3 id='output-schema-of-request'>Output Schema of Request</h3>
+<table><thead>
+<tr>
+<th>Field</th>
+<th>Meaning</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>data</td>
+<td>container for response data</td>
+</tr>
+<tr>
+<td>id</td>
+<td>id</td>
+</tr>
+<tr>
+<td>type</td>
+<td>location in database</td>
+</tr>
+<tr>
+<td>attributes</td>
+<td>container for data of created user</td>
+</tr>
+<tr>
+<td>destination</td>
+<td>city,state_abbreviation</td>
+</tr>
+<tr>
+<td>forecast</td>
+<td>container for current weather data</td>
+</tr>
+<tr>
+<td>summary</td>
+<td>short description of conditions</td>
+</tr>
+<tr>
+<td>temperature</td>
+<td>degrees Fahrenheit</td>
+</tr>
+<tr>
+<td>total_books_found</td>
+<td>total number of books available for city</td>
+</tr>
+<tr>
+<td>books</td>
+<td>container for data on books</td>
+</tr>
+<tr>
+<td>isbn</td>
+<td>array of isbn numbers for a book</td>
+</tr>
+<tr>
+<td>title</td>
+<td>book title</td>
+</tr>
+<tr>
+<td>publisher</td>
+<td>publisher name</td>
+</tr>
+</tbody></table></p></p>
+
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Message</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>200</td>
+<td>OK</td>
+</tr>
+<tr>
+<td>400</td>
+<td>Missing or incorrect location</td>
 </tr>
 </tbody></table>
 
       </div>
       <div class="dark-box">
           <div class="lang-selector">
-                <a href="#" data-language-name="shell">shell</a>
+                <a href="#" data-language-name="javascript">javascript</a>
                 <a href="#" data-language-name="ruby">ruby</a>
                 <a href="#" data-language-name="python">python</a>
-                <a href="#" data-language-name="javascript">javascript</a>
           </div>
       </div>
     </div>
